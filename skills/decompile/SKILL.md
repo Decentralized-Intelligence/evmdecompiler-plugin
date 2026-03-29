@@ -12,8 +12,8 @@ Decompile EVM smart contract bytecode into human-readable Solidity source code.
 Use this skill when the user asks to:
 - Decompile EVM bytecode
 - Convert bytecode to Solidity
-- Reverse-engineer a smart contract from its bytecode
-- Understand what a contract does given its bytecode
+- Reverse-engineer a smart contract from its bytecode or address
+- Understand what a contract does given its bytecode or address
 
 ## API details
 
@@ -26,9 +26,33 @@ Use this skill when the user asks to:
 
 Follow these steps exactly:
 
-### Step 1: Validate the input
+### Step 1: Get the bytecode
 
-The user must provide EVM bytecode as a hex string. It should start with `0x` and contain only hex characters. If the user provides a contract address instead of bytecode, tell them this plugin requires raw bytecode and suggest they fetch it from a block explorer or RPC endpoint first.
+**If the user provides raw bytecode:** It should be a hex string starting with `0x`. Use it directly.
+
+**If the user provides a contract address:** Fetch the bytecode using a public RPC endpoint. Use the chain ID to pick the right RPC:
+
+| Chain | Chain ID | RPC URL |
+|-------|----------|---------|
+| Ethereum | 1 | `https://eth.llamarpc.com` |
+| Optimism | 10 | `https://mainnet.optimism.io` |
+| BSC | 56 | `https://bsc-dataseed.binance.org` |
+| Polygon | 137 | `https://polygon-bor.publicnode.com` |
+| Base | 8453 | `https://mainnet.base.org` |
+| Arbitrum | 42161 | `https://arb1.arbitrum.io/rpc` |
+| Avalanche | 43114 | `https://api.avax.network/ext/bc/C/rpc` |
+
+If the user doesn't specify a chain, assume Ethereum mainnet (chain ID 1).
+
+Fetch the bytecode:
+
+```sh
+curl -s -X POST "<RPC_URL>" \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_getCode","params":["<ADDRESS>","latest"],"id":1}'
+```
+
+The bytecode is in the `result` field of the response. If the result is `0x` or empty, the address is not a contract — tell the user.
 
 ### Step 2: Submit the bytecode for decompilation (model v6)
 

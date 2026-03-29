@@ -4,13 +4,14 @@ A [Codex](https://openai.com/codex) plugin that decompiles EVM smart contract by
 
 ## What it does
 
-Give Codex raw EVM bytecode and this plugin will:
+Give Codex raw EVM bytecode **or a contract address** and this plugin will:
 
-1. Submit the bytecode to the decompiler API
-2. Poll for the result automatically
-3. Return decompiled Solidity source code
+1. Fetch bytecode from a public RPC if an address is provided
+2. Submit the bytecode to the decompiler API
+3. Poll for the result automatically
+4. Return decompiled Solidity source code
 
-It tries the latest model first, and falls back to the default model if the first attempt fails or times out.
+It tries the latest model first, and falls back to the default model if the first attempt fails or times out. Supports Ethereum, Optimism, BSC, Polygon, Base, Arbitrum, and Avalanche.
 
 ## Install
 
