@@ -1,0 +1,27 @@
+{
+  "name": "evmdecompiler",
+  "version": "1.0.0",
+  "description": "Decompile EVM bytecode into human-readable Solidity source code using the evmdecompiler.com API.",
+  "author": {
+    "name": "Decentralized Intelligence",
+    "url": "https://www.evmdecompiler.com"
+  },
+  "homepage": "https://www.evmdecompiler.com",
+  "license": "MIT",
+  "keywords": ["evm", "decompiler", "solidity", "bytecode", "ethereum", "smart-contract"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "EVM Decompiler",
+    "shortDescription": "Decompile EVM bytecode to Solidity",
+    "longDescription": "Decompile EVM smart contract bytecode into readable Solidity source code. Provide raw bytecode and get back decompiled contract code powered by evmdecompiler.com.",
+    "developerName": "Decentralized Intelligence",
+    "category": "Developer Tools",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://www.evmdecompiler.com",
+    "defaultPrompt": [
+      "Decompile this EVM bytecode: 0x...",
+      "Decompile the bytecode of the contract at address 0x... on Ethereum mainnet"
+    ],
+    "brandColor": "#4F46E5"
+  }
+}
