@@ -34,7 +34,7 @@ Follow these steps exactly:
 
 | Chain | Chain ID | RPC URL |
 |-------|----------|---------|
-| Ethereum | 1 | `https://eth.llamarpc.com` |
+| Ethereum | 1 | `https://1rpc.io/eth` |
 | Optimism | 10 | `https://mainnet.optimism.io` |
 | BSC | 56 | `https://bsc-dataseed.binance.org` |
 | Polygon | 137 | `https://polygon-bor.publicnode.com` |
